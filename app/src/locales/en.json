@@ -1,0 +1,7 @@
+{
+  "menu": {
+    "orders": "Orders",
+    "product": "Product"
+  },
+  "message": "hello i18n !!"
+}
