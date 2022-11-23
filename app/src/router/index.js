@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import UserApi from "../api/UserApi";
-import SessionService from "../services/SessionService";
-import Orders from "../views/Orders.vue";
-import Product from "../views/Product.vue";
+import UserApi from "@/api/UserApi";
+import SessionService from "@/services/SessionService";
+import Orders from "@/views/Orders.vue";
+import Product from "@/views/Product.vue";
+import Login from "@/views/Login.vue";
 import store from "@/store";
 
 const routes = [
@@ -10,7 +11,8 @@ const routes = [
     path: "/",
     name: "Orders",
     meta: {
-      // authOnly: true,
+      authOnly: true,
+      layout: "layout-bar",
     },
     component: Orders,
   },
@@ -18,10 +20,18 @@ const routes = [
     path: "/product",
     name: "Product",
     meta: {
-      // authOnly: true,
+      authOnly: true,
       layout: "layout-bar",
     },
     component: Product,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    meta: {
+      guestOnly: true,
+    },
+    component: Login,
   },
 ];
 
@@ -42,17 +52,13 @@ router.beforeEach(async (to, from, next) => {
 
   const user = store.state.user;
 
-  // if (to.meta.guestOnly && user) {
-  //   next(
-  //     typeof to.meta.guestOnly === "boolean"
-  //       ? { name: "home" }
-  //       : to.meta.guestOnly
-  //   );
-  //   return;
-  // }
+  if (to.meta.guestOnly && user) {
+    next({ name: "Orders" });
+    return;
+  }
 
   if (to.meta.authOnly && !user) {
-    next({ name: "Orders" });
+    next({ name: "Login" });
     return;
   }
 

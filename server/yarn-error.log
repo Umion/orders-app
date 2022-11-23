@@ -1,0 +1,42 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.17_2/libexec/bin/yarn.js add dotenv express jsonwebtoken pg pg-hstore sequelize
+
+PATH: 
+  /Users/alexandr/.rvm/gems/ruby-3.0.0/bin:/Users/alexandr/.rvm/gems/ruby-3.0.0@global/bin:/Users/alexandr/.rvm/rubies/ruby-3.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/alexandr/Library/Android/sdk/platform-tools:/Users/alexandr/Library/Android/sdk/emulator:/Users/alexandr/Library/Android/sdk/tools:/Users/alexandr/Library/Android/sdk/tools/bin:/Users/alexandr/Library/Android/sdk/platform-tools:/Users/alexandr/.rvm/bin:/Users/alexandr/Library/Android/sdk/emulator:/Users/alexandr/Library/Android/sdk/tools:/Users/alexandr/Library/Android/sdk/tools/bin:/Users/alexandr/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  14.17.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/alexandr/works/orders-app/server/package.json: Unexpected token } in JSON at position 305
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "orders_server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js",
+      "test": "jest --detectOpenHandles --forceExit",
+      "test:coverage": "jest --detectOpenHandles --forceExit --collect-coverage"
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

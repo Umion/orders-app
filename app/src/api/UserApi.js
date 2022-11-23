@@ -1,28 +1,16 @@
+import HttpClient from "../services/HttpClient";
+
 const UserApi = {
-  login(email) {
-    return new Promise((r) => {
-      r({
-        data: {
-          id: 1,
-          email: email,
-          name: "Test User",
-        },
-      });
-    });
+  login(data) {
+    return HttpClient.post("/auth/login", data);
+  },
+
+  registration(data) {
+    return HttpClient.post("/auth/registry", data);
   },
 
   fetch() {
-    return new Promise((r) => {
-      setTimeout(() => {
-        r({
-          data: {
-            id: 1,
-            email: "email@example.com",
-            name: "Test User",
-          },
-        });
-      }, 2000);
-    });
+    return HttpClient.get("/auth/user");
   },
 };
 

@@ -3,5 +3,12 @@
     "orders": "Orders",
     "product": "Product"
   },
-  "message": "hello i18n !!"
+  "login": {
+    "log_in": "Log in",
+    "sign_up": "Sign up",
+    "log_in_title": "Have an account?",
+    "log_in_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quisquam, molestias voluptas praesentium.",
+    "sign_up_title": "Don't have an account?",
+    "sign_up_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quisquam, molestias voluptas praesentium."
+  }
 }

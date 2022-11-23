@@ -8,7 +8,7 @@
   .sidebar__content
     .sidebar__company
       img.sidebar__company-logo(:src="icons.logoIcon")
-      span.sidebar__company-name Company Name
+      span.sidebar__company-name MyCompany
     .sidebar__menu
       router-link(
         v-for="link in navItems"
@@ -50,13 +50,13 @@ export default {
           id: "orders",
           url: "/",
           label: this.$t("menu.orders"),
-          icon: "logo.svg",
+          icon: "orders.svg",
         },
         {
           id: "product",
           url: "/product",
           label: this.$t("menu.product"),
-          icon: "logo.svg",
+          icon: "products.svg",
         },
       ];
     },
@@ -93,7 +93,7 @@ export default {
   transition: width ease-out 0.3s;
 
   &.active {
-    width: 40px;
+    width: 70px;
   }
 
   &__content {

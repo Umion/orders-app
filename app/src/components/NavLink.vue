@@ -27,10 +27,12 @@ export default {
   align-items: center;
 
   &-icon {
-    width: 30px;
-    height: 30px;
-    padding: 0 5px;
+    width: 40px;
+    height: 40px;
     margin-right: 15px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
 
     img {
       width: 100%;

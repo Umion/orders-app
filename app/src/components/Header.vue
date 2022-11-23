@@ -2,20 +2,21 @@
 .header
   .header__company
     transition
-      span( v-show="nav_squeeze") Company Name
+      span( v-show="nav_squeeze") MyCompany
   .header__tools 
     .header__tools-date {{timestamp}}
     .header__tools-language
       CustomSelect(:options="languageOptions" @selected="changeLanguage")
     .header__tools-session
       img(:src="icons.sessionIcon")
-      span 0
+      span {{ users_count }}
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import sessionIcon from "@/assets/images/user.png";
 import CustomSelect from "@/components/CustomSelect.vue";
+import { io } from "socket.io-client";
 
 export default {
   components: {
@@ -24,9 +25,15 @@ export default {
   created() {
     this.getNow();
     setInterval(this.getNow, 1000);
+
+    const socket = io("http://localhost:5000");
+    socket.on("user_connection", (data) => {
+      this.users_count = data;
+    });
   },
   data() {
     return {
+      users_count: 0,
       timestamp: "",
     };
   },
@@ -74,7 +81,6 @@ export default {
   align-items: center;
   padding: 15px;
   background: #fff;
-  height: 40px;
 
   &__tools {
     display: flex;

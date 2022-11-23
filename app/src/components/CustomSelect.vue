@@ -1,8 +1,8 @@
 <template lang="pug">
 .select
   .button(@click="toggleSelect" :class="{open: show}")
-    span(v-if="!selected.value") Select
-    span(v-else) {{selected.text}}
+    span.button__value(v-if="!selected.value") Select
+    span.button__value(v-else) {{selected.text}}
     img.icon(:class="{close: show}" :src="icons.arrowDownIcon")
   .select-block(:class="{open: show}")
     div(class="scroll")
@@ -78,6 +78,10 @@ $primary0: #636983;
     transition: all 0.3s;
     z-index: 0;
 
+    &__value {
+      font-size: 12px;
+    }
+
     &.open {
       border-radius: 10px 10px 0 0;
     }
@@ -116,15 +120,17 @@ $primary0: #636983;
 
     li {
       list-style-type: none;
-      height: 20px;
       color: #666;
       padding: 5px 10px;
       cursor: pointer;
       transition: all 0.3s;
-      font-size: 13px;
+      font-size: 12px;
 
       &:hover {
         background: $gray0;
+      }
+      &:hover:last-child {
+        border-radius: 0 0 10px 10px;
       }
 
       &.active {
