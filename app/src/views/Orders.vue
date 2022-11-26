@@ -1,29 +1,28 @@
 <template lang="pug">
-.view-layout
-  Heading(
-    :title="$t('orders.title', orders.length)"
-  )
-  .orders
-    .orders__left
-      OrderTab(
-        v-for="(item, index) in orders"
-        :item="item" 
-        :tab="tab" 
-        @click="selectTab(item)"
-        @remove="removeOrder"
-      )
-    .orders__right(:class="{show: !!tab}")
-      .orders__right-content 
-        .orders__right-title
-          h2.title {{ orderTitle }}
-          .orders__right-close(@click="close")
-            img(:src="icons.closeIcon")
+Heading(
+  :title="$t('orders.title', orders.length)"
+)
+.orders
+  .orders__left
+    OrderTab(
+      v-for="(item, index) in orders"
+      :item="item" 
+      :tab="tab" 
+      @click="selectTab(item)"
+      @remove="removeOrder"
+    )
+  .orders__right(:class="{show: !!tab}")
+    .orders__right-content 
+      .orders__right-title
+        h2.title {{ orderTitle }}
+        .orders__right-close(@click="close")
+          img(:src="icons.closeIcon")
 
-        ProductItem(
-          v-for="(item, index) in orderProducts"
-          :item="item"
-          @removeProduct="removeProduct"
-        )
+      ProductItem(
+        v-for="(item, index) in orderProducts"
+        :item="item"
+        @removeProduct="removeProduct"
+      )
 OrderRemoveModal(ref="modal" @wasRemoved="removeFromOrders")
 ProductRemoveModal(ref="productsModal" @wasRemoved="removeFromProducts")
 </template>
@@ -91,7 +90,6 @@ export default {
     },
 
     removeFromProducts(id) {
-      console.log(id);
       this.orderProducts = [
         ...this.orderProducts.filter((product) => product.id !== id),
       ];

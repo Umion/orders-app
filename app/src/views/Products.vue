@@ -1,38 +1,37 @@
 <template lang="pug">
-.view-layout
-  Heading(
-    :title="$t('products.title', items.length)"
+Heading(
+  :title="$t('products.title', items.length)"
+)
+  .products__select-wrap
+    CustomSelect(:selected="selectedType" :options="typeOptions" @selected="changeType")
+.table__wrap
+  DataTable(
+    :headers="headers"
+    :items="items"
   )
-    .products__select-wrap
-      CustomSelect(:selected="selectedType" :options="typeOptions" @selected="changeType")
-  .table__wrap
-    DataTable(
-      :headers="headers"
-      :items="items"
-    )
-      template(v-slot:cel_photo="{ item }")
-        img.product__img(:src="require(`@/assets/images/${item.photo}`)")
-      template(v-slot:cel_title="{ item }")
-        p.product__title {{item.title}}
-        p.product__serial {{ item.serialNumber }}
-      template(v-slot:cel_guarantee="{ item }")
-        p.product__guarantee
-          span {{ $t('common.from') }}
-          |  {{ dateFormatted2digit(item.guarantee.start) }}
-        p.product__guarantee
-          span {{ $t('common.to') }}
-          |  {{ dateFormatted2digit(item.guarantee.end) }}
-      template(v-slot:cel_isNew="{ item }")
-        .product__isnew {{item.isNew ? $t('common.new') : $t('common.used')}}
-      template(v-slot:cel_price="{ item }")
-        p.product__price.sm {{ `${item.price[0].value} ${item.price[0].symbol}` }} 
-        p.product__price {{ `${item.price[1].value} ${item.price[1].symbol}` }}
-      template(v-slot:cel_date="{ item }")
-        span.product__date.sm {{ dateFormatted(item.date).short }}
-        span.product__date {{ dateFormatted(item.date).full }}s
-      template(v-slot:cel_action="{ item }")
-        .product__delete(@click="removeProduct(item.id)")
-          img(:src="require(`@/assets/images/remove.png`)")
+    template(v-slot:cel_photo="{ item }")
+      img.product__img(:src="require(`@/assets/images/${item.photo}`)")
+    template(v-slot:cel_title="{ item }")
+      p.product__title {{item.title}}
+      p.product__serial {{ item.serialNumber }}
+    template(v-slot:cel_guarantee="{ item }")
+      p.product__guarantee
+        span {{ $t('common.from') }}
+        |  {{ dateFormatted2digit(item.guarantee.start) }}
+      p.product__guarantee
+        span {{ $t('common.to') }}
+        |  {{ dateFormatted2digit(item.guarantee.end) }}
+    template(v-slot:cel_isNew="{ item }")
+      .product__isnew {{item.isNew ? $t('common.new') : $t('common.used')}}
+    template(v-slot:cel_price="{ item }")
+      p.product__price.sm {{ `${item.price[0].value} ${item.price[0].symbol}` }} 
+      p.product__price {{ `${item.price[1].value} ${item.price[1].symbol}` }}
+    template(v-slot:cel_date="{ item }")
+      span.product__date.sm {{ dateFormatted(item.date).short }}
+      span.product__date {{ dateFormatted(item.date).full }}s
+    template(v-slot:cel_action="{ item }")
+      .product__delete(@click="removeProduct(item.id)")
+        img(:src="require(`@/assets/images/remove.png`)")
 
 </template>
 
@@ -113,100 +112,93 @@ export default {
 </script>
 
 <style lang="scss">
-.view-layout {
-  padding: 20px;
-  height: 100%;
+.products__select-wrap {
+  width: 120px;
 
-  .products__select-wrap {
-    width: 120px;
+  & .button {
+    background: #fff;
+    box-shadow: 2px 2px 5px -2px rgb(0 0 0 / 40%);
+  }
+}
 
-    & .button {
-      background: #fff;
-      box-shadow: 2px 2px 5px -2px rgb(0 0 0 / 40%);
+.table__wrap {
+  overflow: hidden;
+  overflow-x: scroll;
+  padding-bottom: 5px;
+
+  &::-webkit-scrollbar {
+    height: 7px;
+    width: 7px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  & ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  & .data-table {
+    max-width: 1500px;
+    min-width: 1000px;
+  }
+}
+
+.product {
+  &__img {
+    width: 80px;
+  }
+
+  &__guarantee {
+    align-self: center;
+
+    &:first-child {
+      margin-bottom: 5px;
+    }
+
+    & span {
+      color: #7e7e7e;
     }
   }
 
-  .table__wrap {
-    overflow: hidden;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    padding-bottom: 5px;
-    max-height: 500px;
+  &__serial {
+    font-size: 12px;
+    color: #7e7e7e;
+  }
 
-    &::-webkit-scrollbar {
-      height: 7px;
-      width: 7px;
-    }
+  &__isnew {
+    text-align: center;
+  }
 
-    /* Track */
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
+  &__price.sm {
+    font-size: 10px;
+    color: #7e7e7e;
+  }
 
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-      background: #888;
-      border-radius: 5px;
-    }
+  &__date {
+    display: block;
 
-    /* Handle on hover */
-    & ::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
-
-    & .data-table {
-      max-width: 1500px;
-      min-width: 1000px;
+    &.sm {
+      font-size: 11px;
+      color: gray;
     }
   }
 
-  .product {
-    &__img {
-      width: 80px;
-    }
+  &__delete {
+    padding: 5px;
+    cursor: pointer;
 
-    &__guarantee {
-      align-self: center;
-
-      &:first-child {
-        margin-bottom: 5px;
-      }
-
-      & span {
-        color: #7e7e7e;
-      }
-    }
-
-    &__serial {
-      font-size: 12px;
-      color: #7e7e7e;
-    }
-
-    &__isnew {
-      text-align: center;
-    }
-
-    &__price.sm {
-      font-size: 10px;
-      color: #7e7e7e;
-    }
-
-    &__date {
-      display: block;
-
-      &.sm {
-        font-size: 11px;
-        color: gray;
-      }
-    }
-
-    &__delete {
-      padding: 5px;
-      cursor: pointer;
-
-      & img {
-        width: 20px;
-      }
+    & img {
+      width: 20px;
     }
   }
 }

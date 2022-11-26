@@ -1,34 +1,36 @@
 <template lang="pug">
-.wrapper
-  SideBar
-  .content
-    Header
-    slot
+.wrapper(:class="{squeeze: nav_squeeze}")
+  TopMenu
+  NavigationMenu
+  slot
 </template>
 
 <script>
-import SideBar from "@/components/SideBar.vue";
-import Header from "@/components/Header.vue";
+import NavigationMenu from "@/components/NavigationMenu.vue";
+import TopMenu from "@/components/TopMenu.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
-    SideBar,
-    Header,
+    NavigationMenu,
+    TopMenu,
   },
-  methods: {},
+  computed: {
+    ...mapGetters(["nav_squeeze"]),
+  },
 };
 </script>
 
 <style lang="scss">
 .wrapper {
   position: relative;
-  display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  background: #f7f2fa;
+  padding: 100px 30px 50px 250px;
+  transition: padding ease-out 0.3s;
 
-  .content {
-    flex-grow: 1;
-    background: #f7f2fa;
-    overflow: hidden;
+  &.squeeze {
+    padding: 100px 30px 50px 100px;
   }
 }
 </style>

@@ -1,8 +1,8 @@
 <template lang="pug">
-.sidebar(:class="{ active: is_squeeze }")
+.sidebar(:class="{ active: nav_squeeze }")
   img.sidebar__arrow(
     :src="icons.arrowIcon"
-    :class="{ active: is_squeeze }"
+    :class="{ active: nav_squeeze }"
     @click="toggleMenu"
   )
   .sidebar__content
@@ -37,22 +37,16 @@ import logoIcon from "@/assets/images/logo.svg";
 import arrowIcon from "@/assets/images/arrow.svg";
 import NavLink from "@/components/NavLink";
 import SessionService from "@/services/SessionService";
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   components: {
     NavLink,
   },
-  mounted() {
-    const is_squeeze = JSON.parse(localStorage.getItem("is_squeeze")) || false;
-    this.is_squeeze = is_squeeze;
-  },
-  data() {
-    return {
-      is_squeeze: false,
-    };
-  },
+
   computed: {
+    ...mapGetters(["nav_squeeze"]),
+
     navItems() {
       return [
         {
@@ -81,9 +75,9 @@ export default {
     ...mapMutations(["SET_NAV_SQUEEZE"]),
 
     toggleMenu() {
-      this.is_squeeze = !this.is_squeeze;
-      this.SET_NAV_SQUEEZE(this.is_squeeze);
-      localStorage.setItem("is_squeeze", JSON.stringify(this.is_squeeze));
+      const val = !this.nav_squeeze;
+      this.SET_NAV_SQUEEZE(val);
+      localStorage.setItem("is_squeeze", JSON.stringify(val));
     },
 
     endSession() {
@@ -98,7 +92,7 @@ export default {
 
 <style lang="scss">
 .sidebar {
-  position: relative;
+  position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
@@ -107,6 +101,7 @@ export default {
   padding: 15px;
   color: white;
   transition: width ease-out 0.3s;
+  z-index: 101;
 
   &.active {
     width: 70px;

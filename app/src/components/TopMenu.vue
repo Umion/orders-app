@@ -1,5 +1,5 @@
 <template lang="pug">
-.header
+.header(:class="{squeeze: nav_squeeze}")
   .header__company
     transition
       span( v-show="nav_squeeze") MyCompany
@@ -85,12 +85,22 @@ export default {
 
 <style lang="scss">
 .header {
+  position: fixed;
+  left: 220px;
+  top: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 20px;
   background: #fff;
   box-shadow: 0 0px 15px -4px rgb(0 0 0 / 15%);
+  transition: ease-out 0.3s;
+  z-index: 100;
+
+  &.squeeze {
+    left: 70px;
+  }
 
   &__tools {
     display: flex;

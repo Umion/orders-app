@@ -1,4 +1,4 @@
 <template lang="pug">
-.test 
+.default-layout
   slot
 </template>
