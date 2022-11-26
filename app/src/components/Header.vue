@@ -6,7 +6,7 @@
   .header__tools 
     .header__tools-date {{timestamp}}
     .header__tools-language
-      CustomSelect(:options="languageOptions" @selected="changeLanguage")
+      CustomSelect(:selected="selected" :options="languageOptions" @selected="changeLanguage")
     .header__tools-session
       img(:src="icons.sessionIcon")
       span {{ users_count }}
@@ -22,6 +22,12 @@ export default {
   components: {
     CustomSelect,
   },
+  mounted() {
+    this.selected = {
+      text: this.$i18n.locale.toUpperCase(),
+      value: this.$i18n.locale,
+    };
+  },
   created() {
     this.getNow();
     setInterval(this.getNow, 1000);
@@ -35,6 +41,7 @@ export default {
     return {
       users_count: 0,
       timestamp: "",
+      selected: {},
     };
   },
   computed: {
@@ -56,6 +63,7 @@ export default {
 
     getNow() {
       this.timestamp = new Date().toLocaleString(this.$i18n.locale, {
+        weekday: "long",
         month: "short",
         day: "2-digit",
         year: "numeric",
@@ -64,10 +72,11 @@ export default {
       });
     },
 
-    changeLanguage({ value }) {
-      this.$i18n.locale = value;
-      this.SET_LANGUAGE(value);
-      localStorage.setItem("ordersLang", value);
+    changeLanguage(newVal) {
+      this.selected = newVal;
+      this.$i18n.locale = newVal.value;
+      this.SET_LANGUAGE(newVal.value);
+      localStorage.setItem("ordersLang", newVal.value);
       this.getNow();
     },
   },
@@ -81,6 +90,7 @@ export default {
   align-items: center;
   padding: 15px;
   background: #fff;
+  box-shadow: 0 0px 15px -4px rgb(0 0 0 / 15%);
 
   &__tools {
     display: flex;
@@ -91,12 +101,8 @@ export default {
       margin-right: 10px;
     }
 
-    // &-date {
-    //   margin-right: 10px;
-    // }
-
     &-language {
-      width: 70px;
+      width: 65px;
     }
 
     &-session {

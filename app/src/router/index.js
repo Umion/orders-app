@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import UserApi from "@/api/UserApi";
 import SessionService from "@/services/SessionService";
 import Orders from "@/views/Orders.vue";
-import Product from "@/views/Product.vue";
+import Products from "@/views/Products.vue";
 import Login from "@/views/Login.vue";
 import store from "@/store";
 
@@ -18,12 +18,12 @@ const routes = [
   },
   {
     path: "/product",
-    name: "Product",
+    name: "Products",
     meta: {
       authOnly: true,
       layout: "layout-bar",
     },
-    component: Product,
+    component: Products,
   },
   {
     path: "/login",

@@ -37,7 +37,7 @@ class authController {
 
       if (!user) {
         return res
-          .status(400)
+          .status(403)
           .json({ message: "User with this email is not exist" });
       }
       const validPassword = comparePassword(password, user.password);
@@ -47,7 +47,9 @@ class authController {
 
       const token = generateAccessToken(user.id, user.email);
       return res.json({ token });
-    } catch (error) {}
+    } catch (error) {
+      return res.status(400).json({ message: error });
+    }
   }
 
   async getUser(req, res) {
@@ -55,14 +57,17 @@ class authController {
       const { id } = req.user;
 
       const user = await User.findByPk(id);
-      if (user.id) {
+
+      if (user) {
         return res.json({
           id: user.id,
           name: user.name,
           email: user.email,
         });
       }
-      return res.status(404).json({ message: "User not found" });
+      return res
+        .status(403)
+        .json({ message: "User with this email is not exist" });
     } catch (error) {
       console.log(error);
       return res.status(400).json({ message: error });

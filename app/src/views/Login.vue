@@ -5,6 +5,7 @@
       h2.panel__content-title {{ $t('login.sign_up_title') }}
       p.panel__content-desc {{ $t('login.sign_up_desc') }}
       Button(
+        :disabled="inProgress"
         :label="$t('login.sign_up')"
         @click="changeMethod(false)"
       )
@@ -12,6 +13,7 @@
       h2.panel__content-title {{ $t('login.log_in_title') }}
       p.panel__content-desc {{ $t('login.log_in_desc') }}
       Button(
+        :disabled="inProgress"
         :label="$t('login.log_in')"
         transparent
         @click="changeMethod(true)"
@@ -82,6 +84,7 @@ export default {
   },
   data() {
     return {
+      inProgress: false,
       loginView: true,
       login: {
         email: "",
@@ -120,21 +123,25 @@ export default {
     },
 
     authRegistry() {
+      this.inProgress = true;
       userApi
         .registration(this.registration)
         .then(({ data }) => {
           this.showMessage("success", data.message);
           this.loginView = true;
+          this.inProgress = false;
         })
         .catch((e) => {
           this.showMessage(
             "info",
             e.response.data.message || "Registration Error"
           );
+          this.inProgress = false;
         });
     },
 
     authLogin() {
+      this.inProgress = true;
       userApi
         .login(this.login)
         .then(({ data }) => {
@@ -142,6 +149,7 @@ export default {
           this.$router.push({
             path: "/",
           });
+          this.inProgress = false;
         })
         .catch((e) => {
           console.log(e);
@@ -149,6 +157,7 @@ export default {
             "info",
             e.response.data.message || "Registration Error"
           );
+          this.inProgress = false;
         });
     },
 

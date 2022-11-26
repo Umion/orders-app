@@ -27,7 +27,8 @@ export default {
 
   .content {
     flex-grow: 1;
-    background: #e5e5e5;
+    background: #f7f2fa;
+    overflow: hidden;
   }
 }
 </style>

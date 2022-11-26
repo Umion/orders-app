@@ -25,6 +25,7 @@ export default {
   width: 220px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   &-icon {
     width: 40px;

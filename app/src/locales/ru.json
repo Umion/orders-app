@@ -1,3 +1,34 @@
 {
-  "message": "приветствую i18n !!"
+  "menu": {
+    "orders": "Приходы",
+    "product": "Продукты",
+    "logout": "Выйти"
+  },
+  "login": {
+    "log_in": "Войти",
+    "sign_up": "Зарегистрироваться",
+    "log_in_title": "Уже зарегистрированы?",
+    "log_in_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quisquam, molestias voluptas praesentium.",
+    "sign_up_title": "Нет аккаунта?",
+    "sign_up_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quisquam, molestias voluptas praesentium."
+  },
+  "common": {
+    "new": "Новый",
+    "used": "Б/У",
+    "from": "с",
+    "to": "до"
+  },
+  "modal": {
+    "btn_cancel": "Отмена",
+    "btn_confirm": "Подтвердить"
+  },
+  "products": {
+    "title": "Продукты / {n}"
+  },
+  "orders": {
+    "title": "Приходы / {n}",
+    "item_count": "<span class='count'>{n}</span> <span>Продукт</span> | <span class='count'>{n}</span> <span>Продуктов</span>",
+    "modal_remove_order": "Вы уверены что хотите удалить {name} ?",
+    "modal_remove_product": "Вы уверены что хотите удалить этот продукт?"
+  }
 }

@@ -1,7 +1,8 @@
 {
   "menu": {
     "orders": "Orders",
-    "product": "Product"
+    "product": "Product",
+    "logout": "Logout"
   },
   "login": {
     "log_in": "Log in",
@@ -10,5 +11,24 @@
     "log_in_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quisquam, molestias voluptas praesentium.",
     "sign_up_title": "Don't have an account?",
     "sign_up_desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima quisquam, molestias voluptas praesentium."
+  },
+  "common": {
+    "new": "New",
+    "used": "Bought used",
+    "from": "from",
+    "to": "to"
+  },
+  "modal": {
+    "btn_cancel": "Cancel",
+    "btn_confirm": "Confirm"
+  },
+  "products": {
+    "title": "Products / {n}"
+  },
+  "orders": {
+    "title": "Orders / {n}",
+    "item_count": "<span class='count'>{n}</span> <span>Product</span> | <span class='count'>{n}</span> <span>Products</span>",
+    "modal_remove_order": "Are you sure you want to remove {name} ?",
+    "modal_remove_product": "Are you sure you want to remove this Product?"
   }
 }

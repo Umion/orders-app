@@ -12,8 +12,6 @@ app.use("/auth", authRouter);
 
 const server = createServer(app);
 
-let users = [];
-
 const io = new Server(server, {
   cors: {
     origin: "*",

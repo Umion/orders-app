@@ -19,19 +19,14 @@ export default {
       type: Array,
       required: true,
     },
-  },
-
-  mounted() {
-    this.selected = {
-      text: this.$i18n.locale.toUpperCase(),
-      value: this.$i18n.locale,
-    };
+    selected: {
+      type: Object,
+    },
   },
 
   data() {
     return {
       show: false,
-      selected: {},
     };
   },
 
@@ -41,7 +36,6 @@ export default {
     },
 
     selectItem(value) {
-      this.selected = value;
       this.show = false;
       this.$emit("selected", value);
     },
@@ -70,8 +64,7 @@ $primary0: #636983;
     width: 100%;
     border-radius: 10px;
     background-color: $gray0;
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 5px 25px 5px 10px;
     color: #666;
     cursor: pointer;
     box-sizing: border-box;
@@ -95,7 +88,7 @@ $primary0: #636983;
     width: 100%;
     max-height: 200px;
     border-radius: 0 0 10px 10px;
-    box-shadow: 0 5px 25px -4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 25px -4px rgba(0, 0, 0, 0.15);
     position: absolute;
     background-color: white;
     box-sizing: border-box;
@@ -151,7 +144,7 @@ $primary0: #636983;
 
   .icon {
     position: absolute;
-    right: 10px;
+    right: 5px;
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.3s;

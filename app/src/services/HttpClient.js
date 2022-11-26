@@ -3,9 +3,7 @@ import SessionService from "./SessionService";
 
 export const baseURL = process.env.API_HOST || "http://localhost:5000";
 
-export const HttpClient = axios.create({
-  baseURL: baseURL,
-});
+export const HttpClient = axios.create({ baseURL });
 
 HttpClient.defaults.headers.common = {
   Accept: "application/json",
@@ -26,8 +24,8 @@ const responseHandler = (response) => {
 };
 
 const errorHandler = async (error) => {
-  if (error.response.status === 403) {
-    SessionService.destroySession();
+  if (error.response.status === 401) {
+    SessionService.removeSession();
     window.location = "/login";
   }
 

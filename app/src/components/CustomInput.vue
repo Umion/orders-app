@@ -6,6 +6,7 @@ input.input(
   @input="$emit('update', $event.target.value)"
 )
 </template>
+
 <script>
 export default {
   props: {
@@ -23,6 +24,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .input {
   width: 100%;

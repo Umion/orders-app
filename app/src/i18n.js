@@ -27,7 +27,7 @@ const lang = localStorage.getItem("ordersLang");
 const INITIAL_LANGUAGE = lang || "en";
 
 if (!lang) {
-  localStorage.setItem("ordersLang", JSON.stringify("en"));
+  localStorage.setItem("ordersLang", "en");
 }
 
 export default createI18n({
