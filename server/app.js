@@ -9,6 +9,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 app.use("/auth", authRouter);
+app.get("/", (req, res) => res.send("<h2>Server started</h2>"));
 
 const server = createServer(app);
 
