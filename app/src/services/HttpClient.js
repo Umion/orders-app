@@ -1,7 +1,7 @@
 import axios from "axios";
 import SessionService from "./SessionService";
 
-export const baseURL = process.env.API_HOST || "http://localhost:5000";
+export const baseURL = process.env.VUE_APP_API_HOST || "http://localhost:5000";
 
 export const HttpClient = axios.create({ baseURL });
 

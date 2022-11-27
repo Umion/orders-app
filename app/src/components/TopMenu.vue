@@ -32,7 +32,7 @@ export default {
     this.getNow();
     setInterval(this.getNow, 1000);
 
-    const socket = io("http://localhost:5000");
+    const socket = io(process.env.VUE_APP_API_HOST || "http://localhost:5000");
     socket.on("user_connection", (data) => {
       this.users_count = data;
     });
