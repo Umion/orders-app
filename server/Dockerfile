@@ -10,4 +10,4 @@ RUN yarn install
 
 EXPOSE 5000
 
-CMD [ "yarn", "dev" ]
+CMD [ "yarn", "start" ]
