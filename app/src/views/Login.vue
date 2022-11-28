@@ -123,6 +123,14 @@ export default {
     },
 
     authRegistry() {
+      if (
+        !this.registration.email.length ||
+        !this.registration.name.length ||
+        !this.registration.password.length
+      ) {
+        this.showMessage("info", "all fields must be filled");
+        return;
+      }
       this.inProgress = true;
       userApi
         .registration(this.registration)
@@ -141,6 +149,10 @@ export default {
     },
 
     authLogin() {
+      if (!this.login.email.length || !this.login.password.length) {
+        this.showMessage("info", "all fields must be filled");
+        return;
+      }
       this.inProgress = true;
       userApi
         .login(this.login)
