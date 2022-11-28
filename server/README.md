@@ -6,6 +6,12 @@
 | JWT_SECRET_KEY | Is a string or buffer                                    |
 | DATABASE_URL   | postgres://postgres:postgres@postgres_app:5432/orders_db |
 
+## Project setup
+
+```
+yarn install
+```
+
 ## Compiles for development
 
 ```sh
