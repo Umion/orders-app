@@ -9,9 +9,6 @@
     "test": "jest --detectOpenHandles --forceExit",
     "test:coverage": "jest --detectOpenHandles --forceExit --collect-coverage"
   },
-  "engines": {
-    "node": "14"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
