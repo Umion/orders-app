@@ -7,7 +7,7 @@
       Button(
         :disabled="inProgress"
         :label="$t('login.sign_up')"
-        @click="changeMethod(false)"
+        @submit="changeMethod(false)"
       )
     .panel__content.right
       h2.panel__content-title {{ $t('login.log_in_title') }}
@@ -16,7 +16,7 @@
         :disabled="inProgress"
         :label="$t('login.log_in')"
         transparent
-        @click="changeMethod(true)"
+        @submit="changeMethod(true)"
       )
     .panel__sliding(:class="{active: loginView}")
       transition( name="slide-fade")
@@ -36,7 +36,7 @@
           )
           Button(
             :label="$t('login.log_in')"
-            @click="authLogin"
+            @submit="authLogin"
           )
         .form(v-else)
           h1.form__title {{ $t('login.sign_up') }}
@@ -59,7 +59,7 @@
           )
           Button(
             :label="$t('login.sign_up')"
-            @click="authRegistry"
+            @submit="authRegistry"
           )
   transition
     Toast(

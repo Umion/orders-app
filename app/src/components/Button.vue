@@ -1,21 +1,16 @@
 <template lang="pug">
 .button(
   :class="{transparent}"
-  :style="{...buttonStyle}"
-  @click="$emit('click')"
+  @click="$emit('submit')"
   ) {{label}}
 
 </template>
 
 <script>
 export default {
-  emits: ["click"],
   props: {
     label: {
       type: String,
-    },
-    buttonStyle: {
-      type: Object,
     },
     transparent: {
       type: Boolean,
